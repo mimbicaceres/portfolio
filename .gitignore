@@ -1,0 +1,25 @@
+# secretos
+.env
+.env.*
+!.env.example
+
+# entorno y cachés de Python
+venv/
+__pycache__/
+*.pyc
+
+# datos locales
+db.sqlite3
+media/
+staticfiles/
+
+# editores, sistema y registros
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+*.log
+
+# imágenes de respaldo / sin uso (siguen en el disco, no se suben)
+portfolio/static/portfolio/hero-dia-lila4-sin-barra-vieja.png
+portfolio/static/portfolio/hero-dia-lila4.png

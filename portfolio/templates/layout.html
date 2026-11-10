@@ -1,0 +1,51 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Candela Mimbí Caceres | Desarrollo de Software{% endblock %}</title>
+
+    <link rel="stylesheet" href="https://fonts.cdnfonts.com/css/butler">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Pixelify+Sans:wght@400..700&family=Tiny5&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap">
+
+    <link rel="preload" as="image" href="{% static 'portfolio/hero-dia-lila4-sin-barra.png' %}">
+    <link rel="preload" as="image" href="{% static 'portfolio/hero-escritorio-base.png' %}">
+
+    <script>
+        document.documentElement.classList.add("js");
+        try {
+            document.documentElement.setAttribute("data-theme", localStorage.getItem("tema") || "dark");
+        } catch (e) {
+            document.documentElement.setAttribute("data-theme", "dark");
+        }
+    </script>
+    <link rel="stylesheet" href="{% static 'main.css' %}?v=20261104">
+</head>
+<body>
+    <div class="page">
+        <div class="day-bubbles" aria-hidden="true">
+            <span class="day-bubble day-bubble--python"><i></i></span>
+            <span class="day-bubble day-bubble--postgres"><i></i></span>
+            <span class="day-bubble day-bubble--react"><i></i></span>
+            <span class="day-bubble day-bubble--django"><i></i></span>
+            <span class="day-bubble day-bubble--git"><i></i></span>
+            <span class="day-bubble day-bubble--mysql"><i></i></span>
+            <span class="day-bubble day-bubble--js"><i></i></span>
+        </div>
+        <div class="stars" data-stars aria-hidden="true"></div>
+
+        {% include 'partials/navbar.html' %}
+
+        {% block content %}
+        {% endblock %}
+
+        <footer class="site-footer">
+            <p>&copy; 2026 Portafolio de Candela Mimbí Caceres. Todos los derechos reservados.</p>
+        </footer>
+    </div>
+
+    <script src="{% static 'main.js' %}"></script>
+</body>
+</html>

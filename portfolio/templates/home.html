@@ -1,0 +1,271 @@
+{% extends 'layout.html' %}
+{% load static %}
+
+{% block content %}
+
+    <div class="day-smoke-layer" aria-hidden="true">
+        <span class="day-smoke"><i></i><i></i><i></i></span>
+    </div>
+
+    <section id="inicio" class="hero">
+        <div class="hero-art" aria-hidden="true">
+            <div class="hero-art-img"></div>
+            <div class="hero-art-overlay">
+                <span class="zzz zzz-1">z</span>
+                <span class="zzz zzz-2">z</span>
+                <span class="zzz zzz-3">z</span>
+                <span class="hero-bubble hero-bubble--python"></span>
+                <span class="hero-bubble hero-bubble--postgres"></span>
+                <span class="hero-bubble hero-bubble--react"></span>
+                <span class="hero-bubble hero-bubble--django"></span>
+                <span class="hero-bubble hero-bubble--git"></span>
+                <span class="hero-bubble hero-bubble--mysql"></span>
+                <span class="hero-bubble hero-bubble--js"></span>
+            </div>
+            <div class="hero-art-day" hidden>
+                <span class="day-bubble day-bubble--python"><i></i></span>
+                <span class="day-bubble day-bubble--postgres"><i></i></span>
+                <span class="day-bubble day-bubble--react"><i></i></span>
+                <span class="day-bubble day-bubble--django"><i></i></span>
+                <span class="day-bubble day-bubble--git"><i></i></span>
+                <span class="day-bubble day-bubble--mysql"><i></i></span>
+                <span class="day-bubble day-bubble--js"><i></i></span>
+                <span class="day-smoke"><i></i><i></i><i></i></span>
+            </div>
+        </div>
+
+        <div class="hero-inner">
+            <div class="hero-arc" aria-hidden="true"></div>
+            <div class="hero-copy">
+                <span class="hero-badge" data-ob><span class="hero-badge-icon"></span>Full Stack Developer</span>
+                <h1 class="hero-title">Hola, soy<br><span class="hero-name">Candela Mimbí<br>Caceres</span></h1>
+                <p class="hero-sub">Estudiante de Tecnicatura en Desarrollo de Software</p>
+                <p class="hero-text">Desarrollo sitios y aplicaciones web con Django, React y bases de datos como SQLite, MySQL y PostgreSQL. Busco un lugar donde aportar y aprender trabajando en equipo.</p>
+
+                <div class="hero-buttons">
+                    <a href="#proyectos" class="btn btn-primary btn-lg">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M3 6.5h6l2 2h10v10.5H3z"></path></svg>
+                        Ver proyectos
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+                    </a>
+                    <a href="{% static 'portfolio/CV-Candela-Mimbi-Caceres.pdf' %}" download="CV-Candela-Mimbi-Caceres.pdf" class="btn btn-ghost btn-lg">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11M7 10l5 5 5-5M4 20h16"></path></svg>
+                        Descargar CV
+                    </a>
+                </div>
+
+                <div class="hero-social">
+                    <a href="https://github.com/mimbicaceres" aria-label="GitHub" class="social-link" target="_blank" rel="noopener noreferrer"><span class="icon icon-github"></span></a>
+                    <a href="https://www.linkedin.com/in/mimbi-caceres" aria-label="LinkedIn" class="social-link" target="_blank" rel="noopener noreferrer"><span class="social-in">in</span></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="proyectos" class="section section--projects">
+        <h2 class="section-title">Mis proyectos</h2>
+        <p class="section-sub">Algunos de los proyectos en los que trabajé:</p>
+
+        <div class="projects-grid">
+            {% for project in projects %}
+                <article class="project-card">
+                    <div class="project-card-img">
+                        <img src="{{ project.image.url }}" alt="{{ project.title }}" loading="lazy">
+                    </div>
+                    <div class="project-card-body">
+                        <h3>{{ project.title }}</h3>
+                        <p>{{ project.description }}</p>
+                        {% with techs=project.technology_list %}
+                            {% if techs %}
+                                <ul class="project-tags" aria-label="Tecnologías">
+                                    {% for tech in techs %}<li>{{ tech }}</li>{% endfor %}
+                                </ul>
+                            {% endif %}
+                        {% endwith %}
+                        {% if project.url %}
+                            <div class="project-card-actions">
+                                <a href="{{ project.url }}" class="btn btn-primary btn-sm" target="_blank" rel="noopener noreferrer">
+                                    <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path></svg>
+                                    Ver código
+                                </a>
+                            </div>
+                        {% endif %}
+                    </div>
+                </article>
+            {% empty %}
+                <p class="section-empty">Todavía no hay proyectos cargados.</p>
+            {% endfor %}
+        </div>
+    </section>
+
+    <section id="stack" class="section section--stack">
+        <h2 class="section-title">Mi stack</h2>
+        <p class="section-sub">Pasá el mouse o tocá una tecnología para ver dónde la usé.</p>
+
+        <div class="stack-layout">
+            <div class="fan" id="fan" data-ob>
+                <div class="fan-inner" id="fanCards"></div>
+            </div>
+
+            <div class="flip-wrap" data-ob>
+                <div class="flip" id="flip">
+                    <div class="flip-inner" id="flipInner">
+                        <div class="flip-face flip-front">
+                            <span class="flip-num" id="flipNum"></span>
+                            <span class="flip-icon"><span class="icon" id="flipIcon"></span></span>
+                            <span class="flip-name" id="flipName"></span>
+                        </div>
+                        <div class="flip-face flip-back">
+                            <div class="flip-back-inner">
+                                <span class="flip-back-label">REVERSO</span>
+                                <span class="flip-back-name" id="flipBackName"></span>
+                                <span class="flip-back-row">Lo usé en:<br><span id="flipUsed"></span></span>
+                                <span class="flip-back-row">Poder:<br><span id="flipPower"></span></span>
+                                <span class="flip-star flip-star--l">✦</span>
+                                <span class="flip-star flip-star--r">✦</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <span class="stack-hint">Tocá una carta para darla vuelta</span>
+            </div>
+        </div>
+    </section>
+
+    <section id="sobre-mi" class="section section--about">
+        <h2 class="section-title">Sobre mí</h2>
+        <div class="about-text">
+            <p>Soy Candela Mimbí Cáceres, estudiante de la Tecnicatura en Desarrollo de Software. Me gusta resolver problemas con código y ver cómo algo que armé empieza a funcionar. Disfruto aprender cosas nuevas y también diseñar la interfaz, cuidando que se vea prolija y sea fácil de usar.</p>
+            <p>Me siento cómoda tanto en el frontend como en el backend con Django, y trabajo con bases de datos como SQLite, MySQL y PostgreSQL. Aprendí haciendo: PlayCode y EduControl son proyectos completos, con login, roles, base de datos y varias secciones, y en los dos trabajé en equipo con Git y GitHub.</p>
+            <p>Ahora busco un lugar donde aportar desde el primer día y, al mismo tiempo, seguir aprendiendo trabajando con otras personas.</p>
+        </div>
+    </section>
+
+    <section id="contacto" class="section section--contact">
+        <div class="contact-heading">
+            <h2 class="section-title">Contacto</h2>
+            <span class="contact-rule"></span>
+        </div>
+
+        <div class="contact-stage" id="contactStage" data-ob>
+            <div class="contact-scene">
+                <div class="desk-glow"></div>
+                <div class="scene3d">
+
+                    <div class="desk">
+                        <div class="desk-edge"></div>
+                        <div class="keyboard" id="keyboard"></div>
+                        <div class="mouse">
+                            <div class="mouse-body"></div>
+                            <span class="mouse-line"></span>
+                            <span class="mouse-wheel"></span>
+                        </div>
+                    </div>
+
+                    <div class="monitor monitor--left">
+                        <div class="monitor-stand"></div>
+                        <div class="monitor-base"></div>
+                        <div class="monitor-back"></div>
+                        <div class="monitor-side monitor-side--l"></div>
+                        <div class="monitor-side monitor-side--r"></div>
+                        <div class="monitor-top"></div>
+                        <div class="monitor-bezel">
+                            <div class="screen">
+                                <div class="screen-content">
+                                    <div class="window-bar">
+                                        <span class="window-dots"><i></i><i></i><i></i></span>
+                                        <span class="window-title">linkedin.exe</span>
+                                    </div>
+                                    <div class="screen-body screen-body--center">
+                                        <span class="linkedin-logo">
+                                            <span class="linkedin-ring"></span>
+                                            <span class="icon icon-linkedin"></span>
+                                        </span>
+                                        <span class="screen-name">Candela Mimbí Caceres</span>
+                                        <span class="screen-role">Full Stack Developer</span>
+                                        <a href="https://www.linkedin.com/in/mimbi-caceres" class="screen-btn" target="_blank" rel="noopener noreferrer">Ver perfil</a>
+                                    </div>
+                                </div>
+                                <span class="screen-scan"></span>
+                                <span class="screen-glare"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="monitor monitor--center">
+                        <div class="monitor-stand"></div>
+                        <div class="monitor-base"></div>
+                        <div class="monitor-back"></div>
+                        <div class="monitor-side monitor-side--l"></div>
+                        <div class="monitor-side monitor-side--r"></div>
+                        <div class="monitor-top"></div>
+                        <div class="monitor-bezel">
+                            <div class="screen">
+                                <div class="screen-content">
+                                    <div class="window-bar">
+                                        <span class="window-dots"><i></i><i></i><i></i></span>
+                                        <span class="window-title">contacto.exe</span>
+                                    </div>
+                                    <div class="contact-body">
+                                        <div class="contact-info">
+                                            <span class="contact-title">¡Trabajemos juntos!</span>
+                                            <span class="contact-text">Si tenés una propuesta, una pregunta o querés saludar, escribime.</span>
+                                            <div class="contact-line"><span class="contact-line-icon">@</span><span>mimbicaceres@gmail.com</span></div>
+                                            <div class="contact-line"><span class="contact-line-icon">⌖</span><span>Corrientes, Argentina</span></div>
+                                        </div>
+                                        <form class="contact-form" id="contactForm" method="post" action="{% url 'contact' %}" novalidate>
+                                            {% csrf_token %}
+                                            <input name="hp_campo" class="contact-hp" type="text" tabindex="-1" autocomplete="off" aria-hidden="true">
+                                            <input name="nombre" type="text" placeholder="Tu nombre" maxlength="100" required value="{{ contact_form.nombre.value|default:'' }}">
+                                            <input name="email" type="email" placeholder="Tu email" maxlength="254" required value="{{ contact_form.email.value|default:'' }}">
+                                            <textarea name="mensaje" placeholder="Tu mensaje" maxlength="5000" required rows="3">{{ contact_form.mensaje.value|default:'' }}</textarea>
+                                            {% for message in messages %}
+                                                <p class="contact-status contact-status--{{ message.level_tag }}" role="status">{{ message }}</p>
+                                            {% endfor %}
+                                            {% if contact_form.errors %}
+                                                <p class="contact-status contact-status--error" role="alert">{% for field, errors in contact_form.errors.items %}{{ errors.0 }} {% endfor %}</p>
+                                            {% endif %}
+                                            <p class="contact-status contact-status--info" id="contactSending" role="status" aria-live="polite" hidden></p>
+                                            <button type="submit" id="contactSubmit">Enviar mensaje</button>
+                                        </form>
+                                    </div>
+                                </div>
+                                <span class="screen-scan"></span>
+                                <span class="screen-glare"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="monitor monitor--right">
+                        <div class="monitor-stand"></div>
+                        <div class="monitor-base"></div>
+                        <div class="monitor-back"></div>
+                        <div class="monitor-side monitor-side--l"></div>
+                        <div class="monitor-side monitor-side--r"></div>
+                        <div class="monitor-top"></div>
+                        <div class="monitor-bezel">
+                            <div class="screen">
+                                <div class="screen-content">
+                                    <div class="window-bar">
+                                        <span class="window-dots"><i></i><i></i><i></i></span>
+                                        <span class="window-title">github.exe</span>
+                                    </div>
+                                    <div class="screen-body screen-body--center">
+                                        <span class="icon icon-github-big"></span>
+                                        <span class="screen-handle">@mimbicaceres</span>
+                                        <span class="gh-grid" id="ghGrid"></span>
+                                        <a href="https://github.com/mimbicaceres" class="screen-btn" target="_blank" rel="noopener noreferrer">Ver repositorios</a>
+                                    </div>
+                                </div>
+                                <span class="screen-scan"></span>
+                                <span class="screen-glare"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}

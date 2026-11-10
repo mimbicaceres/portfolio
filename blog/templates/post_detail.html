@@ -1,0 +1,25 @@
+{% extends 'layout.html' %}
+
+{% block title %}{{ post.title }} | Candela Mimbí Caceres{% endblock %}
+
+{% block content %}
+
+    <section class="section section--post">
+        <h1 class="section-title">{{ post.title }}</h1>
+        <p class="section-sub">{{ post.date|date:"j \d\e F \d\e Y" }}</p>
+
+        <article class="post-detail">
+            <div class="post-detail-img">
+                <img src="{{ post.image.url }}" alt="{{ post.title }}">
+            </div>
+            <div class="post-detail-text">
+                <p>{{ post.description|safe }}</p>
+            </div>
+        </article>
+
+        <div class="post-back">
+            <a href="{% url 'blog:posts' %}" class="btn btn-ghost btn-sm">Volver a publicaciones</a>
+        </div>
+    </section>
+
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends 'layout.html' %}
+
+{% block title %}Publicaciones | Candela Mimbí Caceres{% endblock %}
+
+{% block content %}
+
+    <section class="section section--posts">
+        <h1 class="section-title">Publicaciones</h1>
+        <p class="section-sub">Notas y novedades sobre lo que voy aprendiendo.</p>
+
+        <div class="projects-grid projects-grid--wide">
+            {% for post in posts %}
+                <article class="project-card is-shown">
+                    <div class="project-card-img">
+                        <img src="{{ post.image.url }}" alt="{{ post.title }}" loading="lazy">
+                    </div>
+                    <div class="project-card-body">
+                        <h3>{{ post.title }}</h3>
+                        <p class="post-date">{{ post.date|date:"d/m/Y" }}</p>
+                        <p>{{ post.description|striptags|truncatechars:100 }}</p>
+                        <div class="project-card-actions">
+                            <a href="{% url 'blog:post_detail' post.id %}" class="btn btn-primary btn-sm">Leer más</a>
+                        </div>
+                    </div>
+                </article>
+            {% empty %}
+                <p class="section-empty">Todavía no hay publicaciones.</p>
+            {% endfor %}
+        </div>
+    </section>
+
+{% endblock %}

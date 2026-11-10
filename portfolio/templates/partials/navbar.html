@@ -4,7 +4,7 @@
     <div class="nav" data-ob>
         <a href="{{ home_url }}" class="nav-brand">
             <span class="nav-logo">CC</span>
-            <span class="nav-brand-name">Candela Mimbí Caceres</span>
+            <span class="nav-brand-name">Candela Mimbí Cáceres</span>
         </a>
 
         <nav class="nav-links">
@@ -12,7 +12,6 @@
             <a href="{{ home_url }}#proyectos">Proyectos</a>
             <a href="{{ home_url }}#stack">Tecnologías</a>
             <a href="{{ home_url }}#sobre-mi">Sobre mí</a>
-            <a href="{% url 'blog:posts' %}"{% if request.resolver_match.namespace == 'blog' %} class="is-active"{% endif %}>Publicaciones</a>
         </nav>
 
         <div class="nav-actions">
